@@ -1,0 +1,145 @@
+# Passos para criação do Projeto
+
+
+
+### Criação do Projeto: ASP .NET CORE (MVC)
+
+### Instalação do Entity Framework e Entity Framework Tools:
+
+​						Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+​						Install-Package Microsoft.EntityFrameworkCore.Tools
+
+### Criação das classes que serão utilizadas 
+
+			##### Criação da Classe Context (para criar o acesso ao banco de dados) e a configuração do local do banco, adicionado a string de configuração da primeira tabela "Categorias" 
+
+##### 			
+
+##### 	O Contexto foi adicionado na Startup.cs (services.AddDbContext<Context>();)
+
+
+
+#### Criando o banco de dados e aplicando as configurações
+
+			##### Aplicado na Migration para criação da tabela no banco de dados:
+
+​							Add-Migration InitialCreate (esse InicitalCreate pode ser qualquer nome)
+
+			##### Aplicando a criação no banco de dados:
+
+​							Update-Database
+
+
+
+#### Adicionando o Scaffolding na Controller
+
+O Scaffolding se no projeto contiver uma model e um contexto ele consegue gerar uma Controller com as telas e operações de CRUD
+
+		 ##### 	Botão Direito em Controle -> Adicionar -> Novo Item com Scafoolding
+
+​						Controlador MVC com exibições usando o Entity Framework. (Se der erro para adicionar no .Net core 3.1 usar o script : Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -version 3.1.5) Desta forma ele cria o Scafollding.
+
+
+
+Ajustar conforme necessidades e criar classes conforme precisão.
+
+
+
+
+
+# Passos para criação do projeto API
+
+
+
+### Criação do Projeto: ASP .NET CORE API
+
+
+
+Clicar com o botão direito do mouse em cima do projeto CusoAPI ir até gerenciador nuget e instalar o pacote Swashbuckle.AspNetCore.
+
+#### Entrar nas propriedades do projeto e ajustar:
+
+						##### 				Em "Compilar" habilitar a opção "Arquivo de documentação XML"
+	
+						##### 				Em "Depurar" na configuração iniciar navegador arterar a rota para swagger. Salvar alterações.
+
+
+
+#### Habilitar o swagger no startup adicionado o comando:
+
+				##### 				services.AddSwaggerGen( c=> {c.SwaggerDoc("v1", new OpenApiInfo {Title = "CursoAPI", Version = "v1"});})
+
+
+
+#### Adicionar os meddwares:
+
+			##### 				app.UseSwagger();
+
+##### 				app.UseSwaggerUI(c=> {c.SwaggerEndpoint("/swagger/v1/swagger.json", "CursoAPI");});
+
+
+
+#### Adicionar as referências do projeto CursoMVC
+
+			 #####  				Clicando com o botão direito do mouse sobre o projeto CursoAPi ir até "Adicionar" selecionar a opção "Adicionar Referencia de Projeto", em "Solução" habilitar a opção Curso.MVC.
+
+​			
+
+#### Adicionando o Scaffolding na Controller
+
+		##### Botão Direito em Controler -> Adicionar -> Novo Item com Scafoolding
+
+
+​						#### Controlador API com ações, usando o Entity Framework. (Se der erro para adicionar no .Net core 3.1 usar o script : Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -version 3.1.5) Desta forma ele cria o Scafollding.
+
+
+
+#### Adicionar o Contexto na Startup.cs (services.AddDbContext<Context>();)
+
+A Solution atualmente está "startando" apenas pelo projeto CursoMVC para startar os dois projetos simultaneamente,l clicar com o botão direito do mouse sobre a solution e clicar em propriedades, em "Propriedades de Inicialização" habilitar a opção "Vários projetos de inicialização:" em cada projeto mudar a opção "Ação" para Iniciar.
+
+
+
+
+
+# Passos para criação do projeto de Teste
+
+### Criação do projeto ASP .NET Core xUnitTeste
+
+Após Criar o projeto deve se adicionar as referências do projeto, para isso clicar sobre o projeto CursoTeste com o Botão direito do mouse, ir até a opção "Adicionar", depois clicar em "Referencia de Projeto", habilitar os dois projetos (CursoAPI e CursoMVC) e clicar em OK.
+
+
+
+Instalar Pacotes: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+​			
+
+
+
+
+
+
+
+
+

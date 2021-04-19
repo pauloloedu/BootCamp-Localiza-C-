@@ -29,14 +29,19 @@ namespace CrescimentoPopulacional
                     g1convert = double.TryParse(valores[2], out g1);
                     g2convert = double.TryParse(valores[3], out g2);
 
-                    if (paconvert == false || 
-                        pbconvert == false || 
-                        g1convert == false || 
+                    if (paconvert == false ||
+                        pbconvert == false ||
+                        g1convert == false ||
                         g2convert == false ||
-                        pa <= 0 ||
-                        pb <= 0 ||
-                        g1 < 0 ||
-                        g2 < 0) return;
+                        pa < 100 ||
+                        pa >= 1000000 ||
+                        pb < pa ||
+                        pb > 1000000 ||
+                        g1 < 0.1 ||
+                        g1 > 10.0 ||
+                        g2 < 0.0 ||
+                        g2 > 10.0 ||
+                        g2 > g1) return;
                 }
                 catch
                 {
@@ -77,7 +82,7 @@ namespace CrescimentoPopulacional
                     Console.WriteLine("{0} anos.", anos);
                 }
             }
-        Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
